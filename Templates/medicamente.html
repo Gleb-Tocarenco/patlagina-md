@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="medicine">
+	<h2>Lista de medicamente</h2>
+	{% for medicine in medicines  %}
+		<div class="medicine">
+		<a href="{% url 'delete_medicament' medicine.id %}">Delete</a>
+			<h3>{{medicine.}}</h3>
+			<p>{{medicine.short_description}}</p>
+			<p>{{medicine.price}}</p>
+		</div>
+	{% endfor %}
+</div>
+
+</body>
+</html>
