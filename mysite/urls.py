@@ -18,22 +18,20 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from first.views import list_medicine, get_medicament_form, save_medicine
-from first.views import home
-from first.views import drugstore, meds, home
+from first.views import list_medicine
 from first import views
 
 
 urlpatterns = [
+    url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^medicamente/$', list_medicine, name='list_medicine'),
-    url(r'^get-medicament-form/$', get_medicament_form),
-    url(r'^save-medicament/$', save_medicine, name='save_medicine'),
-    url(r'^home/$', home, name='home'),
     url(r'^meds/$', views.meds, name='meds'),
-    url(r'^drugstore/$', drugstore, name='drugstore'),
+    url(r'^drugstore/$', views.drugstore, name='drugstore'),
     url(r'^signup/$', views.signup, name='signup'),
-    # url(r'^login/$', views.login, name='login'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^diseases/$', views.diseases, name='diseases'),
+    url(r'^blog/$', views.blog, name='blog'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

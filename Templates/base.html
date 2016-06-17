@@ -3,15 +3,16 @@
 <head> <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
 <script>
-  // function initMap() {
-  	// var mapDiv = document.getElementById('map');
-  	// var map = new google.maps.Map(mapDiv, 
-  	// {
-      // center: {lat:  46.5154393, lng: 29.6426153},
-      // zoom: 9
-    // });
-  // }
+  function initMap() {
+  	var mapDiv = document.getElementById('map');
+  	var map = new google.maps.Map(mapDiv, 
+  	{
+      center: {lat:  46.5154393, lng: 29.6426153},
+      zoom: 9
+    });
+  }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
          async defer></script>
@@ -23,6 +24,20 @@
         height: 400px;
     }
 </style>
+<style type="text/css">
+            .footer {
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align:center;
+  /* Set the fixed height of the footer here */
+  height: 90px;
+  background-color: #222222;
+}
+
+.form-inline {margin-top: 7px}
+        </style>
 		
 </head>
 <body>
@@ -31,7 +46,7 @@
 	<div class="collapse navbar-collapse">
 		<ul class="nav navbar-nav" >
 			<img src="http://blog.pennylaneorganics.com/wp-content/uploads/2014/07/Plantain.gif" width="120" align="left">		
-			<li><a href="/home/"><h3>Acasa</h3></a> </li>
+			<li><a href="/"><h3>Acasa</h3></a> </li>
 			<li><a href="/meds/"><h3>Medicamente</h3></a></li>
 			<li><a href="/diseases/"><h3>Boli</h3></a></li>
 			<li><a href="/blog/"><h3>Blog</h3></a></li>
@@ -54,14 +69,24 @@
 					</form>
 				</div>
 			</li>
-			<li><a href="#"><h3>Profil</h3></a></li>
-			<li><a href="#"><h3>Logout</h3></a></li>
+			<li><a href="/login/"><h3>Login</h3></a></li>
+			<li><a href="/signup/"><h3>Sign Up</h3></a></li>
 		</ul>
 	</div>
 </div>	
 </nav>
 
+<footer class="footer">
+  <div class="container-fluid">
+    <ul style="padding-top: 20px" > 
+        <li><p class="text-muted">&#169; 2016 Patlagina.md &nbsp &nbsp &nbsp All Rights Reserved  </p></li>
+    </ul>
+  </div>
+</footer>
+
 	{% block body_block %}{% endblock %}
+
+
 
 </body>
 </html>

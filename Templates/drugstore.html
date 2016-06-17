@@ -1,30 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<title>Farmacii</title>
-</head>
-<body>
-<nav class="navbar navbar-inverse" >
-<div class="container-fluid">
-  <div class="collapse navbar-collapse">
-    <ul class="nav navbar-nav" >
-      <a href="index.html"><img src="http://3.bp.blogspot.com/-9cWGQfxXzJA/VhVB9HfD8AI/AAAAAAAACi0/0pGoT-jTmaQ/s1600/plantain.png" width="120" align="left"></a>
-      <li><a href="med.html"><h3>Medicamente</h3></a></li>
-      <li><a href="#"><h3>Boli</h3></a></li>
-      <li><a href="#"><h3>Farmacii</h3></a></li>
-      <li><a href="#"><h3>Blog</h3></a></li>
-      <li><a href="#"><h3>Contacte</h3></a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><h3>Sign Up</h3></a></li>
-      <li><a href="#"><h3>Login</h3></a></li>
-    </ul>
-  </div>
+{% extends  'base.html' %}
 
-</body>
-</html>
+{% block body_block %}
+
+    <div id="map"></div>
+    <script>
+    $(document).ready(function(){
+      $('#js-farmacy').change(function(){
+        initMap($(this).find('option:selected').data())
+      })
+    })
+      function initMap(coordinatesDict) {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+          center: {lat: 47.596752, lng: 28.218033},
+          zoom:6
+        })
+        var marker = new google.maps.Marker({
+    map: map,
+    position: coordinatesDict, 
+     });
+    }
+    var mapDiv = document.getElementById('map');
+    google.maps.event.addListenerOnce(mapDiv, 'idle', function(){
+        initMap({lat:46.520097 , lng:29.667892 });
+    });
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js"
+        async defer></script>
+        <center><h4> Găsește farmacii selectînd din listele de mai jos</h4>
+        <div class="form-group">
+          <select class="form-control btn-group" id='js-farmacy'>
+            <option disabled selected value class="btn btn-default dropdown-toggle">Localitate</option>
+            {% for localitate in localitati %}
+              <option data-lat='{{localitate.latitude}}' data-lng='{{localitate.longitude}}'>{{ localitate.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Farmacii <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">Hipocrates</a></li>
+            <li><a href="#">Continent</a></li>
+            <li><a href="#">Optica</a></li>
+            <li><a href="#">Farmacie 24/24</a></li>
+        </ul>
+      </div>
+    </center>
+
+
+{% endblock %}

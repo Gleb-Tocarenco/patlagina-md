@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block body_blocks %}
 <div id="medicine">
 	<h2>Lista de medicamente</h2>
 	{% for medicine in medicines  %}
@@ -15,6 +12,8 @@
 		</div>
 	{% endfor %}
 </div>
+
+{% endblock %}
 
 </body>
 </html>

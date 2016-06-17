@@ -10,13 +10,22 @@ class MedicineType(models.Model):
 
     name = models.CharField(max_length=255)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
 class Boala(models.Model):
     name = models.CharField(max_length=100)
     short_description = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name
+
+
+class Localitate(models.Model):
+    name = models.CharField(max_length=50)
+    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(null=True)
 
 
 class Farmacie(models.Model):
@@ -55,6 +64,9 @@ class Medicament(models.Model):
     medicine_type = models.ForeignKey(MedicineType)
     boala = models.ManyToManyField(Boala, blank=True)
     omologi = models.ManyToManyField("self", blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Review(models.Model):
