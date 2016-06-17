@@ -24,16 +24,16 @@ from first.views import drugstore, meds, home
 from first import views
 
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^medicamente/$', list_medicine, name='list_medicine'),
     url(r'^get-medicament-form/$', get_medicament_form),
     url(r'^save-medicament/$', save_medicine, name='save_medicine'),
-    url(r'^home/$', home, name = 'home'),
-    url(r'^meds/$', views.meds, name = 'meds'),
+    url(r'^home/$', home, name='home'),
+    url(r'^meds/$', views.meds, name='meds'),
     url(r'^drugstore/$', drugstore, name='drugstore'),
     url(r'^signup/$', views.signup, name='signup'),
-   # url(r'^login/$', views.login, name='login'),
+    # url(r'^login/$', views.login, name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

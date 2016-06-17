@@ -1,17 +1,27 @@
 {% extends  'base.html' %}
 
 {% block body_block %}
-<div class="form-inline" align="center" >
-<form action="#">
-<div class="form-group input-group-lg">
-	<input type="text" class="form-control " placeholder="Denumirea medicamentului/bolii" style="width:500px">
+ 
+{% for item in med %}
+
+<div align="center">
+  <div class="col-sm-6 col-md-4">
+    
+      <h2 align="center">{{item.name}}</h2>
+
+      <div class="thumbnail">
+        {% load thumbnail %}
+        <img src="{{ item.image.avatar.url }}" />
+
+      </div>
+
+
+      <h3>{{item.short_description}}</h3>
+
+        <p align="center"><a href="#" class="btn btn-primary" role="button">Citeste mai mult</a></p>
+    </div>
+  </div>
 </div>
-<div class="form-group">
-	<button type="button" class="btn btn-success btn-lg">
-  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Cauta
-</button>
-</div>
-</form>
-</div>
-<div id="map"></div>
+{% endfor %}
+
 {% endblock %}
