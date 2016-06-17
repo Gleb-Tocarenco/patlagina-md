@@ -1,10 +1,6 @@
-from django.shortcuts import render, redirect
-
-from django.http import HttpResponse
+from django.shortcuts import render
 
 from models import Medicament, Localitate
-from forms import MedicamentForm
-from easy_thumbnails.files import get_thumbnailer
 # Create your views here.
 
 
@@ -23,8 +19,12 @@ def home(request):
 
 
 def meds(request):
-    medicine_list = Medicament.objects.all()
-    return render(request, 'medicamente.html', {"medicines": medicine_list})
+    search = request.GET.get('search', None)
+    qs_filter = {}
+    if search:
+        qs_filter['name__icontains'] = search
+    medicamente = Medicament.objects.filter(**qs_filter)
+    return render(request, 'meds.html', {'medicamente': medicamente})
 
 
 def drugstore(request):
