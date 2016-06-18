@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from forms import SignUpForm
 from models import Medicament, Localitate
 # Create your views here.
 
@@ -33,7 +33,12 @@ def drugstore(request):
 
 
 def signup(request):
-    return render(request, 'signup.html')
+    form = SignUpForm()
+    if request.method == 'POST':
+        if form.is_valid():
+            new_user = form.save
+            return redirect('/')
+    return render(request, 'signup.html', {'form': form})
 
 
 def login(request):

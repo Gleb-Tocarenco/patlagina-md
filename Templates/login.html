@@ -1,22 +1,23 @@
+
 {% extends 'base.html' %}
 
 {% block body_block %}
-
-<center><h1>Login</h1>
-	<form action="account.html" method="post">
-		<div class="form-row">
+	
+	<div style="width: 600px; margin: 10px auto 0;">
+	<center><h1>Logare</h1>
+	<form action="#" method="post">
+		<div class="form-group">
 			<label for="email-input">Email:</label>
-			<input type="text" name="email" id="email-input"></input>
+			<input type="text" name="email" id="email-input"class="form-control">
 		</div>
-		<br/>
-		<div class="form-row">
-			<label for="password-input">Password:</label>
-			<input type="password" name="password" id="password-input"/>
+		<div class="form-group">
+			<label for="password-input">Parolă:</label>
+			<input type="password" name="password" id="password-input"class="form-control">
 		</div>
-		<button type="submit">Submit</button>
-		<a href="register.html">SignUp</a>
-	</form>
-</center>
+		<button type="submit" class="btn btn-primary">Loghează-te</button>
+		<a href="#">Registrare</a>
+		</div>
+		</center>
 
 
 {% endblock %}
